@@ -8,6 +8,10 @@ import br.com.fiap.roomwordsample.repository.WordRepository
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+val repositoryModule = module {
+    single { WordRepository(get()) }
+}
+
 val dbModule = module {
     single {
         Room.databaseBuilder(
@@ -18,8 +22,6 @@ val dbModule = module {
     }
 
     single { get<WordRoomDatabase>().wordDao() }
-
-    single { WordRepository(get()) }
 }
 
 val uiModule = module {
